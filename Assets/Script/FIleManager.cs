@@ -39,7 +39,7 @@ public class FIleManager : MonoBehaviour
         }
         else
         {
-            outputText.text = "text 파일 로드 삭제";
+            outputText.text = "text 파일 로드 실패";
         }
     }
 

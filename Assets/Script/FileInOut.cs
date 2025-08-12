@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 
 
-[SerializeField]
+[Serializable]
 public class PlayerData
 {
     public string Name;
@@ -58,7 +59,8 @@ public class FileInOut : MonoBehaviour
     /// </summary>
     public void CreateFolder()
      {
-        if(Directory.Exists(folderPath))
+        Debug.Log("폴더 생성 준비");
+        if(!Directory.Exists(folderPath))
         {
             Directory.CreateDirectory(folderPath);
             Debug.Log("폴더 생성 완료");
@@ -77,6 +79,7 @@ public class FileInOut : MonoBehaviour
         File.WriteAllText(txtPath, content);
 
         Debug.Log("txt 파일 저장 완료");
+
     }
 
     public string LoadText()
@@ -85,6 +88,7 @@ public class FileInOut : MonoBehaviour
         {
             return File.ReadAllText(txtPath);
         }
+       
         Debug.Log("txt 파일 로드 실패");
         return null;
     }
