@@ -330,6 +330,7 @@ public class Maze : MonoBehaviour
         CreateFolder();
 
         string mapData = "";
+        mapData += $"{depth}, {width},\n";
         for(int z = 0; z <depth; z++)
         {
             for(int x = 0; x < width; x++)
@@ -359,10 +360,28 @@ public class Maze : MonoBehaviour
     {
         string result = LoadMap();
 
-        while(true)
+        string depthstr = result.Split(',')[0];
+        Debug.Log(depthstr);
+        depth = int.Parse(depthstr);
+        string widhtstr = result.Split(",")[1];
+        Debug.Log(widhtstr);
+        width = int.Parse(widhtstr);
+        Debug.Log(depth + " : " + width);
+        InitialiseMap();
+
+        for(int z = 0; z < depth;z++)
         {
-            
+            string ZmapStr = result.Split('\n')[z + 1];
+            for(int x = 0; x < width;x++)
+            {
+                string mapStr = ZmapStr.Split(",")[x];
+                ZmapStr += mapStr + ",";
+                map[x, z] = int.Parse(mapStr); 
+            }
+            Debug.Log(ZmapStr);
         }
+
+        DrawMap();
     }
 
 }
